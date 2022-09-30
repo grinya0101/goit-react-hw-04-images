@@ -1,42 +1,38 @@
-import { Component } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { AiOutlineSearch } from "react-icons/ai";
 
-export class SearchBar extends Component{
-    state = {
-        photoSerach: ""
+export const SearchBar = ({onSubmit}) => {
+    const [photoSerach, setPhotoSerach] = useState("");
+
+    const handleChage = event => {
+        const {value} = event.target;
+        setPhotoSerach(value);
     }
-    handleChage = event => {
-        const {name, value} = event.target;
-        this.setState({
-            [name]: value
-        })
-    }
-    hendlerSubmit = event => {
+
+    const hendlerSubmit = event => {
         event.preventDefault();
-        this.props.onSubmit(this.state.photoSerach.trim());
+        onSubmit(photoSerach.trim());
     }
-    render(){
-        return(
-            <header className="Searchbar">
-                <form className="SearchForm" onSubmit={this.hendlerSubmit}>
-                    <button type="submit" className="SearchForm-button">
-                        <AiOutlineSearch size={20}/>
-                    </button>
-                    <input
-                    className="SearchForm-input"
-                    type="text"
-                    autoComplete="off"
-                    autoFocus
-                    placeholder="Search images and photos"
-                    onChange={this.handleChage}
-                    name="photoSerach"
-                    value={this.state.photoSerach}
-                    />
-                </form>
-            </header>
-        )
-    } 
+    return(
+        <header className="Searchbar">
+            <form className="SearchForm" onSubmit={hendlerSubmit}>
+                <button type="submit" className="SearchForm-button">
+                    <AiOutlineSearch size={20}/>
+                </button>
+                <input
+                className="SearchForm-input"
+                type="text"
+                autoComplete="off"
+                autoFocus
+                placeholder="Search images and photos"
+                onChange={handleChage}
+                name="photoSerach"
+                value={photoSerach}
+                />
+            </form>
+        </header>
+    )
 }
 
 SearchBar.propTypes = {
