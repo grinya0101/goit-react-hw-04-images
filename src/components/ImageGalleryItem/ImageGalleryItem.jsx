@@ -1,19 +1,16 @@
-import { Component } from "react";
 import PropTypes from "prop-types"
 
-export class ImageGalleryItem extends Component{
-    clckHendler = () => {
-        this.props.onClick(this.props.bigImage);
+export const ImageGalleryItem = ({bigImage, src, alt, onClick}) => {
+    const clckHendler = () => {
+       onClick(bigImage);
     }
-    render(){
-        const {src, alt} = this.props;
-        return(
-            <li className="ImageGalleryItem">
-                <img onClick={this.clckHendler} className="ImageGalleryItem-image" src={src} alt={alt}/>
-            </li>
-        )
-    }
+    return(
+        <li className="ImageGalleryItem">
+            <img onClick={clckHendler} className="ImageGalleryItem-image" src={src} alt={alt}/>
+        </li>
+    )
 }
+
 
 
 ImageGalleryItem.propTypes = {
