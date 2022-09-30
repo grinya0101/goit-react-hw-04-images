@@ -42,8 +42,10 @@ export const App = () => {
   }, [page, searchKeyword])
 
   const changeSerachKeyword = word => {
-    setSearchKeyword(word);
-    setPage(1);
+    if(word){
+      setSearchKeyword(word);
+      setPage(1);
+    }
   }
 
   const setModalPath = (path) => {
