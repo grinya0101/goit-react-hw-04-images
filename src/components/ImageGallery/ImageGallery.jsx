@@ -11,9 +11,9 @@ export const ImageGallery = ({setModalPath, renderImages}) => {
                     {renderImages.map((item, index) => 
                     <ImageGalleryItem 
                         onClick={setModalPath}
-                        src={item.webUrl} 
+                        src={item.webformatURL} 
                         alt={item.index}
-                        bigImage={item.largeUrl}
+                        bigImage={item.largeImageURL}
                         key={item.id * 10 + index}
                     />)}
                 </ul>
