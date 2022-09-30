@@ -1,17 +1,16 @@
-import { Component } from "react";
+
 import PropTypes from "prop-types"
 import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 
 
 
-export class ImageGallery extends Component{        
-    render(){
+export const ImageGallery = ({setModalPath, renderImages}) => {        
         return(
             <>
                 <ul className="ImageGallery">
-                    {this.props.renderImages.map((item, index) => 
+                    {renderImages.map((item, index) => 
                     <ImageGalleryItem 
-                        onClick={this.props.setModalPath}
+                        onClick={setModalPath}
                         src={item.webUrl} 
                         alt={item.index}
                         bigImage={item.largeUrl}
@@ -20,7 +19,6 @@ export class ImageGallery extends Component{
                 </ul>
             </>
         )
-    }
 }
 
 ImageGallery.propTypes = {
