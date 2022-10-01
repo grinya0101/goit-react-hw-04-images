@@ -19,17 +19,12 @@ export const App = () => {
       setIsLoading(true);
       getDataFromPixabay(searchKeyword, page)
       .then(data => {
-          if(page === 1){
-            setRenderImages(data.hits);
-            setTotalItems(data.totalHits);
-          }
-          else{
-            setRenderImages(prev => {
-              const newImages = prev.concat(data.hits);
-              return newImages;
-            });
-            
-          }
+        setRenderImages(prev => {
+          const newImages = prev.concat(data.hits);
+          return newImages;
+        });
+        setTotalItems(data.totalHits);
+    
       })
       .catch(err => {
           console.log(err);
@@ -42,10 +37,12 @@ export const App = () => {
   }, [page, searchKeyword])
 
   const changeSerachKeyword = word => {
-    if(word){
-      setSearchKeyword(word);
-      setPage(1);
+    if(!word){
+      return;
     }
+    setSearchKeyword(word);
+    setRenderImages([]);
+    setPage(1);
   }
 
   const setModalPath = (path) => {
